@@ -61,6 +61,11 @@
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
 
+        .directorate-name {
+            font-size: 14px;
+            color: #333;
+        }
+
         nav ul {
             display: flex;
             list-style: none;
@@ -424,12 +429,55 @@
             background: linear-gradient(135deg, #0088cc, #006699);
         }
 
+        .social-icon.linkedin {
+            background: linear-gradient(135deg, #0077b5, #005885);
+        }
+
+        .social-icon.x-twitter {
+            background: linear-gradient(135deg, #000000, #333333);
+        }
+
         .social-text {
             margin-top: 10px;
             font-size: 14px;
             color: #555;
             font-weight: bold;
             font-family: "Times New Roman", Times, serif;
+        }
+
+        /* Site Footer Styles */
+        .site-footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section {
+            margin-bottom: 15px;
+        }
+
+        .footer-title {
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .footer-info {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .copyright {
+            font-size: 12px;
+            margin-top: 15px;
+            color: #ccc;
         }
 
         /* Mobile-specific adjustments */
@@ -448,6 +496,10 @@
             
             .university-name {
                 font-size: 16px;
+            }
+            
+            .directorate-name {
+                font-size: 12px;
             }
             
             .header-logo {
@@ -595,7 +647,7 @@
                 font-size: 14px;
             }
             
-  .university-name {
+            .university-name {
                 font-size: 14px;
             }
             
@@ -611,7 +663,7 @@
 </head>
 <body>
     <header>
- <div class="header-container">
+        <div class="header-container">
             <div class="logo-container">
                 <img src="https://i.ibb.co/0j2mgMBp/JJU-LOGO.png" alt="Jigjiga University Logo" class="header-logo" />
                 <div>
@@ -670,9 +722,9 @@
                 </a>
             </div>
         </div>
+    </div>
 
-
-   <!-- Site Footer -->
+    <!-- Site Footer -->
     <footer class="site-footer" id="siteFooter">
         <div class="footer-container">
             <div class="footer-section">
@@ -695,13 +747,6 @@
         // Set current year for copyright
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-
-
-        
-
-
-        
-    <script>
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navMenu = document.getElementById('navMenu');
@@ -727,7 +772,7 @@
             resultDiv.innerHTML = '';
             
             if (!input) {
-                resultDiv.innerHTML = `<p class="red">Please enter aadnission number to search.</p>`;
+                resultDiv.innerHTML = `<p class="red">Please enter admission number to search.</p>`;
                 return;
             }
             
@@ -790,7 +835,7 @@
                         <div class="result-item"><span class="field-label">Stream:</span> ${studentFound.stream}</div>
                         <div class="result-item"><span class="field-label">Registration Building:</span> ${studentFound.building}</div>
                         <div class="result-item"><span class="field-label">Registration Window:</span> ${studentFound.roomORwindow}</div>
-                        <div class="result-item"><span class="field-label">Ragistration Date:</span> ${studentFound.registrationDate}</div>
+                        <div class="result-item"><span class="field-label">Registration Date:</span> ${studentFound.registrationDate}</div>
                     `;
                 } else {
                     resultDiv.innerHTML = `<p class="red">No student found with admission number: ${input}</p>`;
@@ -804,13 +849,13 @@
                 const sampleStudent = getSampleStudent(input);
                 if (sampleStudent) {
                     resultDiv.innerHTML = `
-                        <div class="result-item"><span class="field-label">Student Name:</span> ${studentFound.name}</div>
-                        <div class="result-item"><span class="field-label">Student ID:</span> ${studentFound.studentId}</div>
-                        <div class="result-item"><span class="field-label">Gender:</span> ${studentFound.gender}</div>
-                        <div class="result-item"><span class="field-label">Stream:</span> ${studentFound.stream}</div>
-                        <div class="result-item"><span class="field-label">Registration Building:</span> ${studentFound.building}</div>
-                        <div class="result-item"><span class="field-label">Registration Window:</span> ${studentFound.roomORwindow}</div>
-                        <div class="result-item"><span class="field-label">Ragistration Date:</span> ${studentFound.registrationDate}</div>
+                        <div class="result-item"><span class="field-label">Student Name:</span> ${sampleStudent.name}</div>
+                        <div class="result-item"><span class="field-label">Student ID:</span> ${sampleStudent.studentId}</div>
+                        <div class="result-item"><span class="field-label">Gender:</span> ${sampleStudent.gender}</div>
+                        <div class="result-item"><span class="field-label">Stream:</span> ${sampleStudent.stream}</div>
+                        <div class="result-item"><span class="field-label">Registration Building:</span> ${sampleStudent.building}</div>
+                        <div class="result-item"><span class="field-label">Registration Window:</span> ${sampleStudent.roomORwindow}</div>
+                        <div class="result-item"><span class="field-label">Registration Date:</span> ${sampleStudent.registrationDate}</div>
                         <p style="color: orange; margin-top: 10px; font-size: 12px;">Note: Using sample data - CSV file not accessible</p>
                     `;
                 } else {
@@ -827,9 +872,9 @@
         // Fallback function with sample data
         function getSampleStudent(admissionNumber) {
             const sampleData = {
-                "NGAT00000019": {
+                "NGAT00000018": {
                     admissionNumber: "NGAT00000018",
-                    studentId: "NGAT00000018"
+                    studentId: "NGAT00000018",
                     name: "Ahmed Mohammed",
                     gender: "Male",
                     registrationDate: "October 23-24, 2025",
@@ -839,7 +884,7 @@
                 },
                 "NGAT00000019": {
                     admissionNumber: "NGAT00000019",
-                    studentId: "NGAT00000019"
+                    studentId: "NGAT00000019",
                     name: "Sadam Dawud",
                     gender: "Male",
                     registrationDate: "October 23-24, 2025",
@@ -848,8 +893,8 @@
                     stream: "Social Science" 
                 },
                 "NGAT00000020": {
-                    admissionNumber: "NGAT00000012",
-                    studentId: "NGAT00000018"
+                    admissionNumber: "NGAT00000020",
+                    studentId: "NGAT00000020",
                     name: "Soreti Siraj",
                     gender: "Female",
                     registrationDate: "October 23-24, 2025",
