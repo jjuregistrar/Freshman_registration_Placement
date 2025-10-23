@@ -357,6 +357,56 @@
             padding-bottom: 0;
         }
         
+        /* Dormitory Information Box */
+        #dormitory-info {
+            margin-top: 20px;
+            text-align: left;
+            padding: 15px;
+            background: linear-gradient(135deg, #e6f7ff, #cceeff);
+            border-radius: 10px;
+            border-left: 4px solid #0099cc;
+            box-shadow: 
+                inset 0 0 10px rgba(0, 0, 0, 0.05),
+                0 2px 8px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(3px);
+            font-family: "Times New Roman", Times, serif;
+            display: none;
+        }
+        
+        .dormitory-title {
+            text-align: center;
+            font-weight: bold;
+            color: #006699;
+            margin-bottom: 10px;
+            font-size: 16px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dormitory-item {
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #99ccff;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .dormitory-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .dormitory-label {
+            font-weight: bold;
+            display: inline-block;
+            width: 120px;
+            text-align: left;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 14px;
+            color: #006699;
+        }
+        
         .footer {
             margin-top: 20px;
             font-size: 13px;
@@ -599,6 +649,14 @@
                 font-size: 13px;
             }
             
+            #dormitory-info {
+                padding: 12px;
+            }
+            
+            .dormitory-item {
+                font-size: 13px;
+            }
+            
             .footer {
                 font-size: 12px;
             }
@@ -641,6 +699,10 @@
             }
             
             .field-label {
+                width: 100px;
+            }
+            
+            .dormitory-label {
                 width: 100px;
             }
 
@@ -708,6 +770,14 @@
 
             <div id="result"></div>
             
+            <!-- Dormitory Information Box -->
+            <div id="dormitory-info">
+                <div class="dormitory-title">Dormitory Information</div>
+                <div class="dormitory-item"><span class="dormitory-label">Dormitory Building:</span> <span id="dorm-building">Not assigned</span></div>
+                <div class="dormitory-item"><span class="dormitory-label">Room Number:</span> <span id="dorm-room">Not assigned</span></div>
+                <div class="dormitory-item"><span class="dormitory-label">Bed Number:</span> <span id="dorm-bed">Not assigned</span></div>
+            </div>
+            
             <div class="footer">
                 For assistance, contact the Registrar and Alumni Directorate.
             </div>
@@ -772,11 +842,13 @@
         async function searchStudent() {
             const input = document.getElementById('usernameInput').value.trim().toUpperCase();
             const resultDiv = document.getElementById('result');
+            const dormitoryInfo = document.getElementById('dormitory-info');
             const loadingIndicator = document.getElementById('loadingIndicator');
             const searchButton = document.getElementById('searchButton');
             
-            // Clear previous results
+            // Clear previous results and hide dormitory info
             resultDiv.innerHTML = '';
+            dormitoryInfo.style.display = 'none';
             
             if (!input) {
                 resultDiv.innerHTML = `<p class="red">Please enter admission number to search.</p>`;
@@ -810,8 +882,8 @@
                         let fields;
                         if (line.includes('\t')) {
                             fields = line.split('\t');
-                        } else if (line.includes(',')) {
-                            fields = line.split(',');
+                        } else if (line.includes('\t')) {
+                            fields = line.split('\t');
                         } else {
                             fields = line.split(/\s+/);
                         }
@@ -826,7 +898,10 @@
                                 building: fields[4] ? fields[4].trim() : 'Not specified',
                                 roomORwindow: fields[5] ? fields[5].trim() : 'Not specified',
                                 registrationDate: fields[6] ? fields[6].trim() : 'Not specified',
-                                stream: fields[7] ? fields[7].trim() : 'Not specified'
+                                stream: fields[7] ? fields[7].trim() : 'Not specified',
+                                dormBuilding: fields[8] ? fields[8].trim() : 'Not assigned',
+                                dormRoom: fields[9] ? fields[9].trim() : 'Not assigned',
+                                dormBed: fields[10] ? fields[10].trim() : 'Not assigned'
                             };
                             break; // Stop searching once we found the student
                         }
@@ -844,6 +919,14 @@
                         <div class="result-item"><span class="field-label">Registration Window:</span> ${studentFound.roomORwindow}</div>
                         <div class="result-item"><span class="field-label">Registration Date:</span> ${studentFound.registrationDate}</div>
                     `;
+                    
+                    // Display dormitory information if available
+                    if (studentFound.dormBuilding && studentFound.dormBuilding !== 'Not assigned') {
+                        document.getElementById('dorm-building').textContent = studentFound.dormBuilding;
+                        document.getElementById('dorm-room').textContent = studentFound.dormRoom;
+                        document.getElementById('dorm-bed').textContent = studentFound.dormBed;
+                        dormitoryInfo.style.display = 'block';
+                    }
                 } else {
                     resultDiv.innerHTML = `<p class="red">No student found with admission number: ${input}</p>`;
                 }
@@ -865,6 +948,14 @@
                         <div class="result-item"><span class="field-label">Registration Date:</span> ${sampleStudent.registrationDate}</div>
                         <p style="color: orange; margin-top: 10px; font-size: 12px;">Note: Using sample data - CSV file not accessible</p>
                     `;
+                    
+                    // Display dormitory information for sample data
+                    if (sampleStudent.dormBuilding && sampleStudent.dormBuilding !== 'Not assigned') {
+                        document.getElementById('dorm-building').textContent = sampleStudent.dormBuilding;
+                        document.getElementById('dorm-room').textContent = sampleStudent.dormRoom;
+                        document.getElementById('dorm-bed').textContent = sampleStudent.dormBed;
+                        dormitoryInfo.style.display = 'block';
+                    }
                 } else {
                     resultDiv.innerHTML = `<p class="red">No student found with admission number: ${input}</p>`;
                 }
@@ -887,7 +978,10 @@
                     registrationDate: "October 23-24, 2025",
                     building: "Science Building",
                     roomORwindow: "Window 1",
-                    stream: "Natural Science" 
+                    stream: "Natural Science",
+                    dormBuilding: "Male Dormitory A",
+                    dormRoom: "Room 205",
+                    dormBed: "Bed 3"
                 },
                 "NGAT00000019": {
                     admissionNumber: "NGAT00000019",
@@ -897,7 +991,10 @@
                     registrationDate: "October 23-24, 2025",
                     building: "Science Building",
                     roomORwindow: "Window 2",
-                    stream: "Social Science" 
+                    stream: "Social Science",
+                    dormBuilding: "Male Dormitory B",
+                    dormRoom: "Room 312",
+                    dormBed: "Bed 1"
                 },
                 "NGAT00000020": {
                     admissionNumber: "NGAT00000020",
@@ -907,7 +1004,10 @@
                     registrationDate: "October 23-24, 2025",
                     building: "Science Building",
                     roomORwindow: "Window 3",
-                    stream: "Natural Science" 
+                    stream: "Natural Science",
+                    dormBuilding: "Female Dormitory C",
+                    dormRoom: "Room 108",
+                    dormBed: "Bed 2"
                 }
             };
             
