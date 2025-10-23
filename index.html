@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NGAT Placement Announcement</title>
+    <title>Freshman Registration Placement</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -595,8 +595,12 @@
                 font-size: 14px;
             }
             
-            .university-name {
+  .university-name {
                 font-size: 14px;
+            }
+            
+            .directorate-name {
+                font-size: 11px;
             }
             
             .header-logo {
@@ -607,10 +611,13 @@
 </head>
 <body>
     <header>
-        <div class="header-container">
+ <div class="header-container">
             <div class="logo-container">
                 <img src="https://i.ibb.co/0j2mgMBp/JJU-LOGO.png" alt="Jigjiga University Logo" class="header-logo" />
-                <div class="university-name">Jigjiga University<br />Registrar and Alumni Directorate</div>
+                <div>
+                    <div class="university-name">Jigjiga University</div>
+                    <div class="directorate-name">Registrar and Alumni Directorate</div>
+                </div>
             </div>
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
@@ -631,11 +638,11 @@
             <img src="https://i.ibb.co/0j2mgMBp/JJU-LOGO.png" alt="Jigjiga University Logo" class="logo" />
             <h1>Jigjiga University</h1>
             <h2>Registrar and Alumni Directorate</h2>
-            <div class="pink">Tikimt 3, 2018 E.C.<br />NGAT Placement Announcement</div>
+            <div class="pink">Freshman Registration Placement</div>
 
-            <div class="instructions">Enter your username to find your exam placement details</div>
+            <div class="instructions">Enter your admission number to find your registration window</div>
             
-            <input type="text" id="usernameInput" placeholder="Enter username (e.g., NGAT00000018)" />
+            <input type="text" id="usernameInput" placeholder="Enter your admission number here" />
             <button id="searchButton" onclick="searchStudent()">Search</button>
             
             <div class="loading" id="loadingIndicator">Searching for student information...</div>
@@ -649,25 +656,47 @@
             <!-- Social Media Icons Section -->
             <div class="social-text">Follow us on social media</div>
             <div class="social-media">
-                <a href="https://facebook.com" class="social-icon facebook" target="_blank">
+                <a href="https://web.facebook.com/jigjigauniveth" class="social-icon facebook" target="_blank">
                     <i class="fab fa-facebook-f"></i>
                 </a>
-                <a href="https://twitter.com" class="social-icon twitter" target="_blank">
-                    <i class="fab fa-twitter"></i>
+                <a href="https://www.linkedin.com/company/jigjiga-university1/posts/?feedView=all" class="social-icon linkedin" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="https://instagram.com" class="social-icon instagram" target="_blank">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="https://youtube.com" class="social-icon youtube" target="_blank">
-                    <i class="fab fa-youtube"></i>
-                </a>
-                <a href="https://telegram.org" class="social-icon telegram" target="_blank">
+                <a href="https://t.me/jigjigauniveth" class="social-icon telegram" target="_blank">
                     <i class="fab fa-telegram-plane"></i>
+                </a>
+                <a href="https://x.com/jigjigauniveth?t=jhQh0TZoS9m9QhtGPJSqYw&s=35" class="social-icon x-twitter" target="_blank">
+                    <i class="fa-brands fa-x-twitter"></i>
                 </a>
             </div>
         </div>
-    </div>
 
+
+    <!-- Site Footer -->
+    <footer class="site-footer" id="siteFooter">
+        <div class="footer-container">
+            <div class="footer-section">
+                <div class="footer-title">Registrar and Alumni Directorate</div>
+                <div class="footer-info">Jigjiga University</div>
+                <div class="footer-info">Jigjiga, Ethiopia</div>
+            </div>
+            
+            <div class="footer-section">
+                <div class="footer-info">Email: regi@jju.edu.et</div>
+            </div>
+            
+            <div class="copyright">
+                &copy; <span id="currentYear"></span> Jigjiga University. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+
+
+        
+
+
+        
     <script>
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
@@ -694,7 +723,7 @@
             resultDiv.innerHTML = '';
             
             if (!input) {
-                resultDiv.innerHTML = `<p class="red">Please enter a username to search.</p>`;
+                resultDiv.innerHTML = `<p class="red">Please enter aadnission number to search.</p>`;
                 return;
             }
             
@@ -761,7 +790,7 @@
                         <div class="result-item red"><span class="field-label">Exam Time:</span> ${studentFound.time}</div>
                     `;
                 } else {
-                    resultDiv.innerHTML = `<p class="red">No examinee found with username: ${input}</p>`;
+                    resultDiv.innerHTML = `<p class="red">No student found with admission number: ${input}</p>`;
                 }
                 
             } catch (error) {
@@ -783,7 +812,7 @@
                         <p style="color: orange; margin-top: 10px; font-size: 12px;">Note: Using sample data - CSV file not accessible</p>
                     `;
                 } else {
-                    resultDiv.innerHTML = `<p class="red">No examinee found with username: ${input}</p>`;
+                    resultDiv.innerHTML = `<p class="red">No student found with admission number: ${input}</p>`;
                 }
             } finally {
                 // Hide loading indicator and re-enable button
