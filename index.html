@@ -672,7 +672,7 @@
         </div>
 
 
-    <!-- Site Footer -->
+   <!-- Site Footer -->
     <footer class="site-footer" id="siteFooter">
         <div class="footer-container">
             <div class="footer-section">
@@ -690,6 +690,10 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Set current year for copyright
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
 
 
 
@@ -763,14 +767,14 @@
                         // Check if this is the student we're looking for
                         if (fields.length >= 2 && fields[0].trim().toUpperCase() === input) {
                             studentFound = {
-                                username: fields[0] ? fields[0].trim() : 'Unknown',
-                                name: fields[1] ? fields[1].trim() : 'Unknown',
-                                gender: fields[2] ? fields[2].trim() : 'Not specified',
-                                examDate: fields[3] ? fields[3].trim() : 'Not specified',
+                                admissionNumber: fields[0] ? fields[0].trim() : 'Unknown',
+                                studentId: fields[1] ? fields[1].trim() : 'Unknown',
+                                name: fields[2] ? fields[2].trim() : 'Not specified',
+                                gender: fields[3] ? fields[3].trim() : 'Not specified',
                                 building: fields[4] ? fields[4].trim() : 'Not specified',
-                                room: fields[5] ? fields[5].trim() : 'Not specified',
-                                time: fields[6] ? fields[6].trim() : 'Not specified',
-                                session: fields[7] ? fields[7].trim() : 'Not specified'
+                                roomORwindow: fields[5] ? fields[5].trim() : 'Not specified',
+                                registrationDate: fields[6] ? fields[6].trim() : 'Not specified',
+                                stream: fields[7] ? fields[7].trim() : 'Not specified'
                             };
                             break; // Stop searching once we found the student
                         }
@@ -780,14 +784,13 @@
                 // Display results
                 if (studentFound) {
                     resultDiv.innerHTML = `
-                        <div class="result-item"><span class="field-label">Examinee Name:</span> ${studentFound.name}</div>
-                        <div class="result-item"><span class="field-label">Username:</span> ${studentFound.username}</div>
+                        <div class="result-item"><span class="field-label">Student Name:</span> ${studentFound.name}</div>
+                        <div class="result-item"><span class="field-label">Student ID:</span> ${studentFound.studentId}</div>
                         <div class="result-item"><span class="field-label">Gender:</span> ${studentFound.gender}</div>
-                        <div class="result-item"><span class="field-label">Exam Date:</span> ${studentFound.examDate}</div>
-                        <div class="result-item"><span class="field-label">Session:</span> ${studentFound.session}</div>
-                        <div class="result-item"><span class="field-label">Exam Building:</span> ${studentFound.building}</div>
-                        <div class="result-item"><span class="field-label">Exam Room:</span> ${studentFound.room}</div>
-                        <div class="result-item red"><span class="field-label">Exam Time:</span> ${studentFound.time}</div>
+                        <div class="result-item"><span class="field-label">Stream:</span> ${studentFound.stream}</div>
+                        <div class="result-item"><span class="field-label">Registration Building:</span> ${studentFound.building}</div>
+                        <div class="result-item"><span class="field-label">Registration Window:</span> ${studentFound.roomORwindow}</div>
+                        <div class="result-item"><span class="field-label">Ragistration Date:</span> ${studentFound.registrationDate}</div>
                     `;
                 } else {
                     resultDiv.innerHTML = `<p class="red">No student found with admission number: ${input}</p>`;
@@ -801,14 +804,13 @@
                 const sampleStudent = getSampleStudent(input);
                 if (sampleStudent) {
                     resultDiv.innerHTML = `
-                        <div class="result-item"><span class="field-label">Examinee Name:</span> ${sampleStudent.name}</div>
-                        <div class="result-item"><span class="field-label">Username:</span> ${sampleStudent.username}</div>
-                        <div class="result-item"><span class="field-label">Gender:</span> ${sampleStudent.gender}</div>
-                        <div class="result-item"><span class="field-label">Exam Date:</span> ${sampleStudent.examDate}</div>
-                        <div class="result-item"><span class="field-label">Session:</span> ${sampleStudent.session}</div>
-                        <div class="result-item"><span class="field-label">Exam Building:</span> ${sampleStudent.building}</div>
-                        <div class="result-item"><span class="field-label">Exam Room:</span> ${sampleStudent.room}</div>
-                        <div class="result-item red"><span class="field-label">Exam Time:</span> ${sampleStudent.time}</div>
+                        <div class="result-item"><span class="field-label">Student Name:</span> ${studentFound.name}</div>
+                        <div class="result-item"><span class="field-label">Student ID:</span> ${studentFound.studentId}</div>
+                        <div class="result-item"><span class="field-label">Gender:</span> ${studentFound.gender}</div>
+                        <div class="result-item"><span class="field-label">Stream:</span> ${studentFound.stream}</div>
+                        <div class="result-item"><span class="field-label">Registration Building:</span> ${studentFound.building}</div>
+                        <div class="result-item"><span class="field-label">Registration Window:</span> ${studentFound.roomORwindow}</div>
+                        <div class="result-item"><span class="field-label">Ragistration Date:</span> ${studentFound.registrationDate}</div>
                         <p style="color: orange; margin-top: 10px; font-size: 12px;">Note: Using sample data - CSV file not accessible</p>
                     `;
                 } else {
@@ -823,41 +825,41 @@
         }
 
         // Fallback function with sample data
-        function getSampleStudent(username) {
+        function getSampleStudent(admissionNumber) {
             const sampleData = {
-                "NGAT00000018": {
-                    username: "NGAT00000018",
+                "NGAT00000019": {
+                    admissionNumber: "NGAT00000018",
+                    studentId: "NGAT00000018"
                     name: "Ahmed Mohammed",
                     gender: "Male",
-                    examDate: "October 15, 2024",
+                    registrationDate: "October 23-24, 2025",
                     building: "Science Building",
-                    room: "Room 101",
-                    time: "9:00 AM - 11:00 AM",
-                    session: "Morning"
+                    roomORwindow: "Window 1",
+                    stream: "Natural Science" 
                 },
                 "NGAT00000019": {
-                    username: "NGAT00000019",
-                    name: "Fatima Hassan",
-                    gender: "Female",
-                    examDate: "October 15, 2024",
+                    admissionNumber: "NGAT00000019",
+                    studentId: "NGAT00000019"
+                    name: "Sadam Dawud",
+                    gender: "Male",
+                    registrationDate: "October 23-24, 2025",
                     building: "Science Building",
-                    room: "Room 102",
-                    time: "9:00 AM - 11:00 AM",
-                    session: "Morning"
+                    roomORwindow: "Window 2",
+                    stream: "Social Science" 
                 },
                 "NGAT00000020": {
-                    username: "NGAT00000020",
-                    name: "Mohammed Ali",
-                    gender: "Male",
-                    examDate: "October 15, 2024",
-                    building: "Main Building",
-                    room: "Room 201",
-                    time: "2:00 PM - 4:00 PM",
-                    session: "Afternoon"
+                    admissionNumber: "NGAT00000012",
+                    studentId: "NGAT00000018"
+                    name: "Soreti Siraj",
+                    gender: "Female",
+                    registrationDate: "October 23-24, 2025",
+                    building: "Science Building",
+                    roomORwindow: "Window 3",
+                    stream: "Natural Science" 
                 }
             };
             
-            return sampleData[username] || null;
+            return sampleData[admissionNumber] || null;
         }
 
         // Allow searching by pressing Enter key
