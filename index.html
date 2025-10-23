@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Freshman Registration Placement</title>
+    <title>Freshman and Remedial Registration Placement</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -616,6 +616,18 @@
                 backdrop-filter: blur(10px);
                 border-radius: 5px;
                 min-width: 150px;
+                animation: slideInRight 0.3s ease-out;
+            }
+            
+            @keyframes slideInRight {
+                from {
+                    opacity: 0;
+                    transform: translateX(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
             }
             
             nav ul.active {
@@ -848,8 +860,8 @@
             </button>
             <nav>
                 <ul id="navMenu">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="#" onclick="scrollToTop()">Home</a></li>
+                    <li><a href="#" onclick="scrollToAbout()">About Us</a></li>
                     <li><a href="#" class="nav-button">Login</a></li>
                     <li><a href="#" class="nav-button">Sign Up</a></li>
                 </ul>
@@ -862,12 +874,12 @@
             <img src="https://i.ibb.co/0j2mgMBp/JJU-LOGO.png" alt="Jigjiga University Logo" class="logo" />
             <h1>Jigjiga University</h1>
             <h2>Registrar and Alumni Directorate</h2>
-            <div class="pink">Freshman Registration Placement</div>
+            <div class="pink">Freshman and Remedial Registration Placement</div>
 
             <!-- Welcome Note Added Here -->
             <div class="welcome-note">
                 <div class="welcome-title">Welcome to Jigjiga University!</div>
-                <div class="welcome-text">We are delighted to welcome the 2018 Academic Year New Freshman Students to our academic community.</div>
+                <div class="welcome-text">We are delighted to welcome the 2018 Academic Year New Freshman and Remedial Students to our academic community.</div>
                 <div class="welcome-text">This portal allows you to check your registration placement and dormitory assignment using your Grade 12 admission number.</div>
                 <div class="welcome-text">Please verify your details carefully to ensure a smooth registration process.</div>
             </div>
@@ -916,13 +928,17 @@
     <footer class="site-footer" id="siteFooter">
         <div class="footer-container">
             <div class="footer-section">
-                <div class="footer-title">Registrar and Alumni Directorate</div>
-                <div class="footer-info">Jigjiga University</div>
-                <div class="footer-info">Jigjiga, Ethiopia</div>
+                <div class="footer-title">About Jigjiga University</div>
+                <div class="footer-info">Jigjiga University is a leading higher education institution in Ethiopia, committed to excellence in teaching, research, and community service.</div>
+                <div class="footer-info">Our mission is to provide quality education that equips students with the knowledge and skills needed for personal and professional success.</div>
             </div>
             
             <div class="footer-section">
+                <div class="footer-title">Registrar and Alumni Directorate</div>
+                <div class="footer-info">Jigjiga University</div>
+                <div class="footer-info">Jigjiga, Ethiopia</div>
                 <div class="footer-info">Email: regi@jju.edu.et</div>
+                <div class="footer-info">Phone: +251 (0)XX XXX XXXX</div>
             </div>
             
             <div class="copyright">
@@ -950,6 +966,17 @@
                 navMenu.classList.remove('active');
             }
         });
+
+        // Navigation functions
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            navMenu.classList.remove('active');
+        }
+
+        function scrollToAbout() {
+            document.getElementById('siteFooter').scrollIntoView({ behavior: 'smooth' });
+            navMenu.classList.remove('active');
+        }
 
         async function searchStudent() {
             const input = document.getElementById('usernameInput').value.trim().toUpperCase();
