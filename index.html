@@ -862,7 +862,7 @@
             
             try {
                 // Fetch the CSV file
-                const response = await fetch('data.csv');
+                const response = await fetch('freshman_regi_data.csv');
                 
                 if (!response.ok) {
                     throw new Error(`Failed to load data: ${response.status} ${response.statusText}`);
