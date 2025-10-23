@@ -201,6 +201,34 @@
         .logo:hover {
             transform: scale(1.05);
         }
+        
+        /* Welcome Note Styles */
+        .welcome-note {
+            background: linear-gradient(135deg, #e8f4ff, #d1e9ff);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #007bff;
+            text-align: left;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome-title {
+            color: #0056b3;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 8px;
+            text-align: center;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        .welcome-text {
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 5px;
+            font-family: "Times New Roman", Times, serif;
+        }
                
         h1 {
             text-align: center;
@@ -596,6 +624,19 @@
             .main-content {
                 padding: 15px;
             }
+
+            .welcome-note {
+                padding: 12px;
+                margin: 12px 0;
+            }
+
+            .welcome-title {
+                font-size: 15px;
+            }
+
+            .welcome-text {
+                font-size: 13px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -611,6 +652,19 @@
             .logo {
                 height: 80px;
                 margin-bottom: 10px;
+            }
+
+            .welcome-note {
+                padding: 10px;
+                margin: 10px 0;
+            }
+
+            .welcome-title {
+                font-size: 14px;
+            }
+
+            .welcome-text {
+                font-size: 12px;
             }
             
             h1 {
@@ -689,6 +743,18 @@
             .logo {
                 height: 70px;
             }
+
+            .welcome-note {
+                padding: 8px;
+            }
+
+            .welcome-title {
+                font-size: 13px;
+            }
+
+            .welcome-text {
+                font-size: 11px;
+            }
             
             h1 {
                 font-size: 18px;
@@ -760,6 +826,14 @@
             <h1>Jigjiga University</h1>
             <h2>Registrar and Alumni Directorate</h2>
             <div class="pink">Freshman Registration Placement</div>
+
+            <!-- Welcome Note Added Here -->
+            <div class="welcome-note">
+                <div class="welcome-title">Welcome to Jigjiga University!</div>
+                <div class="welcome-text">We are delighted to welcome the 2018 Academic Year New Freshman Students to our academic community.</div>
+                <div class="welcome-text">This portal allows you to check your registration placement and dormitory assignment using your Grade 12 admission number.</div>
+                <div class="welcome-text">Please verify your details carefully to ensure a smooth registration process.</div>
+            </div>
 
             <div class="instructions">Enter your admission number to find your registration window.</div>
             
